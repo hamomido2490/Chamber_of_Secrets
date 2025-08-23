@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-module.exports = {
+const nextConfig = {
   experimental: {
-    useLightningcss: false
+    useLightningcss: true // تعطيل lightningcss عشان مشاكل 32-bit
   }
 };
+
+module.exports = nextConfig;
