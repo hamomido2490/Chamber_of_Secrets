@@ -1,19 +1,31 @@
-import Head from 'next/head';
+'use client';
+
+import { useState, useEffect } from 'react';
+import HoroscopePopup from './components/HoroscopePopup';
 
 export default function Home() {
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    // عرض البوب أب فقط في الزيارة الأولى
+    const visited = localStorage.getItem('visited');
+    if (!visited) {
+      setShowPopup(true);
+      localStorage.setItem('visited', 'true');
+    }
+  }, []);
+
   return (
     <>
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-      <div className="flex items-center justify-center min-h-screen bg-black">
-        <h1 className="text-4xl text-neonBlue font-bold">
+      {showPopup && <HoroscopePopup onClose={() => setShowPopup(false)} />}
+      <main className="text-center p-8">
+        <h1 className="text-4xl md:text-6xl text-neonBlue font-bold animate-pulse">
           Chamber of Secrets | غرفة الأسرار
         </h1>
-      </div>
+        <p className="mt-4 text-neonPurple text-lg">
+          Unlock your cosmic & psychological DNA
+        </p>
+      </main>
     </>
   );
 }
