@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    useLightningcss: true
+    useLightningcss: false
   }
 };
 
